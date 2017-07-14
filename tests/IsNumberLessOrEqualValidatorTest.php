@@ -25,32 +25,32 @@ class IsNumberLessOrEqualValidatorTest extends TestCase
 			[
 				20,
 				100,
-				1,
+				IsNumberLessOrEqualValidator::NUMBER_IS_TOO_BIG,
 			],
 			[
 				20,
 				20,
-				0,
+				IsNumberLessOrEqualValidator::NUMBER_IS_OK,
 			],
 			[
 				20,
 				-10,
-				0,
+				IsNumberLessOrEqualValidator::NUMBER_IS_OK,
 			],
 			[
 				20.5,
 				100,
-				1,
+				IsNumberLessOrEqualValidator::NUMBER_IS_TOO_BIG,
 			],
 			[
 				20.5,
 				20.5,
-				0,
+				IsNumberLessOrEqualValidator::NUMBER_IS_OK,
 			],
 			[
 				20.5,
 				-10,
-				0,
+				IsNumberLessOrEqualValidator::NUMBER_IS_OK,
 			],
 		];
 	}

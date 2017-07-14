@@ -5,6 +5,16 @@ namespace Validator;
 class IsNumberEqualValidator implements ValidatorInterface
 {
 	/**
+	 * @var int
+	 */
+	const NUMBER_IS_EQUAL = 0;
+
+	/**
+	 * @var int
+	 */
+	const NUMBER_IS_NOT_EQUAL = 1;
+
+	/**
 	 * @var double
 	 */
 	private $boundary;
@@ -17,7 +27,6 @@ class IsNumberEqualValidator implements ValidatorInterface
 		$this->boundary = (double) $boundary;
 	}
 
-
 	/**
 	 * @param mixed $value
 	 *
@@ -27,9 +36,9 @@ class IsNumberEqualValidator implements ValidatorInterface
 	public function valid($value): int
 	{
 		if ($this->boundary == $value) {
-			return 0;
+			return self::NUMBER_IS_EQUAL;
 		}
 
-		return 1;
+		return self::NUMBER_IS_NOT_EQUAL;
 	}
 }

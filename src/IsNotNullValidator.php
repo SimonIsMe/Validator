@@ -5,6 +5,16 @@ namespace Validator;
 class IsNotNullValidator implements ValidatorInterface
 {
 	/**
+	 * @var int
+	 */
+	const VALUE_IS_NOT_NULL = 0;
+
+	/**
+	 * @var int
+	 */
+	const VALUE_IS_NULL = 1;
+
+	/**
 	 * @param mixed $value
 	 *
 	 * @return int  - returns 0 if value is NOT null
@@ -13,9 +23,9 @@ class IsNotNullValidator implements ValidatorInterface
 	public function valid($value): int
 	{
 		if (is_null($value)) {
-			return 1;
+			return self::VALUE_IS_NULL;
 		}
 
-		return 0;
+		return self::VALUE_IS_NOT_NULL;
 	}
 }

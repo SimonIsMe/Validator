@@ -5,6 +5,16 @@ namespace Validator;
 class IsNumberLessThanValidator implements ValidatorInterface
 {
 	/**
+	 * @var int
+	 */
+	const NUMBER_IS_OK = 0;
+
+	/**
+	 * @var int
+	 */
+	const NUMBER_IS_TOO_BIG = 1;
+
+	/**
 	 * @var double
 	 */
 	private $boundary;
@@ -16,7 +26,6 @@ class IsNumberLessThanValidator implements ValidatorInterface
 	{
 		$this->boundary = (double) $boundary;
 	}
-
 
 	/**
 	 * @param mixed $value

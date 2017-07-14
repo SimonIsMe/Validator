@@ -25,32 +25,32 @@ class IsNumberEqualValidatorTest extends TestCase
 			[
 				20,
 				100,
-				1,
+				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
 			],
 			[
 				20,
 				20,
-				0,
+				IsNumberEqualValidator::NUMBER_IS_EQUAL,
 			],
 			[
 				20,
 				-10,
-				1,
+				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
 			],
 			[
 				20.5,
 				100,
-				1,
+				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
 			],
 			[
 				20.5,
 				20.5,
-				0,
+				IsNumberEqualValidator::NUMBER_IS_EQUAL,
 			],
 			[
 				20.5,
 				-10,
-				1,
+				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
 			],
 		];
 	}

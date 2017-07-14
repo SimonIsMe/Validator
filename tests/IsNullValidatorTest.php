@@ -24,39 +24,39 @@ class IsNullValidatorTest extends TestCase
 		return [
 			[
 				null,
-				0,
+				IsNullValidator::VALUE_IS_NULL,
 			],
 			[
 				123,
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 			[
 				0,
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 			[
 				123.456,
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 			[
 				0.0,
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 			[
 				'abc',
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 			[
 				'',
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 			[
 				true,
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 			[
 				false,
-				1,
+				IsNullValidator::VALUE_IS_NOT_NULL,
 			],
 		];
 	}
