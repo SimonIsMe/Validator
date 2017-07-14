@@ -4,14 +4,14 @@ namespace Validator;
 
 use PHPUnit\Framework\TestCase;
 
-class NotNullValidatorTest extends TestCase
+class IsNumberGreaterThanValidatorTest extends TestCase
 {
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function test_not_null($value, $expectedResult)
+	public function test($boundary, $value, $expectedResult)
 	{
-		$validator = new NotNullValidator();
+		$validator = new IsNumberGreaterThanValidator($boundary);
 		$result = $validator->valid($value);
 		$this->assertEquals($expectedResult, $result);
 	}
@@ -23,40 +23,34 @@ class NotNullValidatorTest extends TestCase
 	{
 		return [
 			[
-				null,
+				20,
+				100,
+				0,
+			],
+			[
+				20,
+				20,
 				1,
 			],
 			[
-				123,
+				20,
+				-10,
+				1,
+			],
+			[
+				20.5,
+				100,
 				0,
 			],
 			[
-				0,
-				0,
+				20.5,
+				20.5,
+				1,
 			],
 			[
-				123.456,
-				0,
-			],
-			[
-				0.0,
-				0,
-			],
-			[
-				'abc',
-				0,
-			],
-			[
-				'',
-				0,
-			],
-			[
-				true,
-				0,
-			],
-			[
-				false,
-				0,
+				20.5,
+				-10,
+				1,
 			],
 		];
 	}

@@ -2,7 +2,7 @@
 
 namespace Validator;
 
-class NotNullValidator implements ValidatorInterface
+class IsNotNullValidator implements ValidatorInterface
 {
 	/**
 	 * @param mixed $value

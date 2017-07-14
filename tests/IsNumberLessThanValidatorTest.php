@@ -4,14 +4,14 @@ namespace Validator;
 
 use PHPUnit\Framework\TestCase;
 
-class NumberLessThanValidatorTest extends TestCase
+class IsNumberLessThanValidatorTest extends TestCase
 {
 	/**
 	 * @dataProvider dataProvider
 	 */
 	public function test($boundary, $value, $expectedResult)
 	{
-		$validator = new NumberLessThanValidator($boundary);
+		$validator = new IsNumberLessThanValidator($boundary);
 		$result = $validator->valid($value);
 		$this->assertEquals($expectedResult, $result);
 	}

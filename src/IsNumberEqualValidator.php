@@ -2,7 +2,7 @@
 
 namespace Validator;
 
-class NumberEqualValidator implements ValidatorInterface
+class IsNumberEqualValidator implements ValidatorInterface
 {
 	/**
 	 * @var double

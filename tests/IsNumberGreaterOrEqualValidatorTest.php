@@ -4,14 +4,14 @@ namespace Validator;
 
 use PHPUnit\Framework\TestCase;
 
-class NumberLessOrEqualValidatorTest extends TestCase
+class IsNumberGreaterOrEqualValidatorTest extends TestCase
 {
 	/**
 	 * @dataProvider dataProvider
 	 */
 	public function test($boundary, $value, $expectedResult)
 	{
-		$validator = new NumberLessOrEqualValidator($boundary);
+		$validator = new IsNumberGreaterOrEqualValidator($boundary);
 		$result = $validator->valid($value);
 		$this->assertEquals($expectedResult, $result);
 	}
@@ -25,7 +25,7 @@ class NumberLessOrEqualValidatorTest extends TestCase
 			[
 				20,
 				100,
-				1,
+				0,
 			],
 			[
 				20,
@@ -35,12 +35,12 @@ class NumberLessOrEqualValidatorTest extends TestCase
 			[
 				20,
 				-10,
-				0,
+				1,
 			],
 			[
 				20.5,
 				100,
-				1,
+				0,
 			],
 			[
 				20.5,
@@ -50,7 +50,7 @@ class NumberLessOrEqualValidatorTest extends TestCase
 			[
 				20.5,
 				-10,
-				0,
+				1,
 			],
 		];
 	}

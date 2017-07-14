@@ -4,14 +4,14 @@ namespace Validator;
 
 use PHPUnit\Framework\TestCase;
 
-class NumberEqualValidatorTest extends TestCase
+class IsNotNullValidatorTest extends TestCase
 {
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function test($boundary, $value, $expectedResult)
+	public function test_not_null($value, $expectedResult)
 	{
-		$validator = new NumberEqualValidator($boundary);
+		$validator = new IsNotNullValidator();
 		$result = $validator->valid($value);
 		$this->assertEquals($expectedResult, $result);
 	}
@@ -23,34 +23,40 @@ class NumberEqualValidatorTest extends TestCase
 	{
 		return [
 			[
-				20,
-				100,
+				null,
 				1,
 			],
 			[
-				20,
-				20,
+				123,
 				0,
 			],
 			[
-				20,
-				-10,
-				1,
-			],
-			[
-				20.5,
-				100,
-				1,
-			],
-			[
-				20.5,
-				20.5,
+				0,
 				0,
 			],
 			[
-				20.5,
-				-10,
-				1,
+				123.456,
+				0,
+			],
+			[
+				0.0,
+				0,
+			],
+			[
+				'abc',
+				0,
+			],
+			[
+				'',
+				0,
+			],
+			[
+				true,
+				0,
+			],
+			[
+				false,
+				0,
 			],
 		];
 	}

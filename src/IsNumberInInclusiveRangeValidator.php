@@ -2,7 +2,7 @@
 
 namespace Validator;
 
-class NumberInInclusiveRangeValidator implements ValidatorInterface
+class IsNumberInInclusiveRangeValidator implements ValidatorInterface
 {
 	/**
 	 * @var int

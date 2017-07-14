@@ -2,7 +2,7 @@
 
 namespace Validator;
 
-class NumberLessOrEqualValidator implements ValidatorInterface
+class IsNumberGreaterThanValidator implements ValidatorInterface
 {
 	/**
 	 * @var double
@@ -21,12 +21,12 @@ class NumberLessOrEqualValidator implements ValidatorInterface
 	/**
 	 * @param mixed $value
 	 *
-	 * @return int -   0 if VALUE is less or equal specified value
+	 * @return int -   0 if VALUE is greater then specified value
 	 *                 1 otherwise
 	 */
 	public function valid($value): int
 	{
-		if ($this->boundary >= $value) {
+		if ($this->boundary < $value) {
 			return 0;
 		}
 
