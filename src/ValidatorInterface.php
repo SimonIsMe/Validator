@@ -7,7 +7,8 @@ interface ValidatorInterface
 	/**
 	 * @param mixed $value
 	 *
-	 * @return boolean
+	 * @return int -   0 if VALUE is correct
+	 *                 > 0 otherwise. Returned value specifies type of error.
 	 */
-	public function isValid($value): boolean;
+	public function valid($value): int;
 }
