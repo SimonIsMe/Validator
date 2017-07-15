@@ -25,11 +25,17 @@ class ValidatorsCollection
 	public function validThroughAllValidators($value) : ValidationResult
 	{
 		$isValid = true;
+		$errors = [];
+
 		foreach ($this->validators as $validator) {
-			$isValid &= $validator->valid($value) === 0;
+			$validationResult = $validator->valid($value);
+			if ($validationResult > 0) {
+				$errors[$validator->getName()] = $validationResult;
+			}
+			$isValid &= $validationResult === 0;
 		}
 
-		return new ValidationResult($isValid);
+		return new ValidationResult($isValid, $errors);
 	}
 
 	/**
@@ -40,8 +46,9 @@ class ValidatorsCollection
 	public function validToFirstError($value) : ValidationResult
 	{
 		foreach ($this->validators as $validator) {
-			if ($validator->valid($value)) {
-				return new ValidationResult(false);
+			$validationResult = $validator->valid($value);
+			if ($validationResult > 0) {
+				return new ValidationResult(false, [ $validator->getName() => $validationResult ]);
 			}
 		}
 

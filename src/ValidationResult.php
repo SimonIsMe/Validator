@@ -10,11 +10,18 @@ class ValidationResult
 	private $isValid;
 
 	/**
-	 * @param bool $isValid
+	 * @var int[] - key is validator class name, value is number of error
 	 */
-	public function __construct(bool $isValid)
+	private $errors = [];
+
+	/**
+	 * @param bool $isValid
+	 * @param int[] $errors
+	 */
+	public function __construct(bool $isValid, array $errors = [])
 	{
 		$this->isValid = $isValid;
+		$this->errors = $errors;
 	}
 
 	/**
@@ -23,6 +30,14 @@ class ValidationResult
 	public function isValid() : bool
 	{
 		return $this->isValid;
+	}
+
+	/**
+	 * @return int[]
+	 */
+	public function errors(): array
+	{
+		return $this->errors;
 	}
 
 }
