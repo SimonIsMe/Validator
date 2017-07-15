@@ -49,6 +49,15 @@ class IsDateTimeValidator implements ValidatorInterface
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getName(): string
+	{
+		$array = explode('\\', get_class($this));
+		return end($array);
+	}
+
+	/**
 	 * @param mixed $value
 	 *
 	 * @return int  - returns 0 if value is correct date and time

@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class IsNumberInExclusiveRangeValidatorTest extends TestCase
 {
+	public function test_getName()
+	{
+		$validator = new IsNumberInExclusiveRangeValidator(12, 45);
+		$this->assertEquals('IsNumberInExclusiveRangeValidator', $validator->getName());
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 */

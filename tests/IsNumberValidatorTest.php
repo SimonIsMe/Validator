@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class IsNumberValidatorTest extends TestCase
 {
+	public function test_getName()
+	{
+		$validator = new IsNumberValidator();
+		$this->assertEquals('IsNumberValidator', $validator->getName());
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 */

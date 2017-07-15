@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class IsEmailValidatorTest extends TestCase
 {
+	public function test_getName()
+	{
+		$validator = new IsEmailValidator();
+		$this->assertEquals('IsEmailValidator', $validator->getName());
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 */

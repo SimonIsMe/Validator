@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class IsNumberInInclusiveRangeValidatorTest extends TestCase
 {
+	public function test_getName()
+	{
+		$validator = new IsNumberInInclusiveRangeValidator(12, 45);
+		$this->assertEquals('IsNumberInInclusiveRangeValidator', $validator->getName());
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 */

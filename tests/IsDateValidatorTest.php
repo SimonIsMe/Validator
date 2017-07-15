@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class IsDateValidatorTest extends TestCase
 {
+	public function test_getName()
+	{
+		$validator = new IsDateValidator();
+		$this->assertEquals('IsDateValidator', $validator->getName());
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 */

@@ -25,6 +25,14 @@ class ValidationResult
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getName(): string
+	{
+		return end(explode('\\', get_class($this)));
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function isValid() : bool

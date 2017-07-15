@@ -15,6 +15,15 @@ class IsNumberValidator implements ValidatorInterface
 	const IS_NOT_NUMBER = 1;
 
 	/**
+	 * @return string
+	 */
+	public function getName(): string
+	{
+		$array = explode('\\', get_class($this));
+		return end($array);
+	}
+
+	/**
 	 * @param mixed $value
 	 *
 	 * @return int -   0 if value is a number

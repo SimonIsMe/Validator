@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class IsUrlValidatorTest extends TestCase
 {
+	public function test_getName()
+	{
+		$validator = new IsUrlValidator();
+		$this->assertEquals('IsUrlValidator', $validator->getName());
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 */

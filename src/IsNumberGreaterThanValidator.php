@@ -28,6 +28,15 @@ class IsNumberGreaterThanValidator implements ValidatorInterface
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getName(): string
+	{
+		$array = explode('\\', get_class($this));
+		return end($array);
+	}
+
+	/**
 	 * @param mixed $value
 	 *
 	 * @return int -   0 if VALUE is greater then specified value

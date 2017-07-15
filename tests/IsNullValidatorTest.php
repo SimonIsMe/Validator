@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class IsNullValidatorTest extends TestCase
 {
+	public function test_getName()
+	{
+		$validator = new IsNullValidator();
+		$this->assertEquals('IsNullValidator', $validator->getName());
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 */
