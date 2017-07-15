@@ -31,6 +31,10 @@ class IsUrlValidatorTest extends TestCase
 				IsUrlValidator::VALUE_IS_URL,
 			],
 			[
+				'http://console.developers.google.com',
+				IsUrlValidator::VALUE_IS_URL,
+			],
+			[
 				'https://www.google.com',
 				IsUrlValidator::VALUE_IS_URL,
 			],
