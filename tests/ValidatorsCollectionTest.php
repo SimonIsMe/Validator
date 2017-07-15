@@ -9,7 +9,7 @@ class ValidatorsCollectionTest extends TestCase
 	public function test_empty_collection()
 	{
 		$collection = new ValidatorsCollection([]);
-		$result = $collection->valid('abcdef');
+		$result = $collection->validThroughAllValidators('abcdef');
 
 		$this->assertTrue($result->isValid());
 	}
@@ -22,7 +22,7 @@ class ValidatorsCollectionTest extends TestCase
 		$validator->method('valid')->willReturn(0);
 
 		$collection = new ValidatorsCollection([ $validator ]);
-		$result = $collection->valid('abcdef');
+		$result = $collection->validThroughAllValidators('abcdef');
 
 		$this->assertTrue($result->isValid());
 	}
@@ -35,12 +35,12 @@ class ValidatorsCollectionTest extends TestCase
 		$validator->method('valid')->willReturn(1);
 
 		$collection = new ValidatorsCollection([ $validator ]);
-		$result = $collection->valid('abcdef');
+		$result = $collection->validThroughAllValidators('abcdef');
 
 		$this->assertFalse($result->isValid());
 	}
 
-	public function test_collection_with_few_validator_when_all_validators_pass_value()
+	public function test_validThroughAllValidators_with_few_validator_when_all_validators_pass_value()
 	{
 		$passedValidator = $this->getMockBuilder(ValidatorInterface::class)
 			->setMethods(['valid'])
@@ -50,12 +50,12 @@ class ValidatorsCollectionTest extends TestCase
 		$collection = new ValidatorsCollection([
 			$passedValidator, $passedValidator, $passedValidator, $passedValidator
 		]);
-		$result = $collection->valid('abcdef');
+		$result = $collection->validThroughAllValidators('abcdef');
 
 		$this->assertTrue($result->isValid());
 	}
 
-	public function test_collection_with_few_validator_when_one_validator_does_not_pass_value()
+	public function test_validThroughAllValidators_with_few_validator_when_one_validator_does_not_pass_value()
 	{
 		$passedValidator = $this->getMockBuilder(ValidatorInterface::class)
 			->setMethods(['valid'])
@@ -70,7 +70,42 @@ class ValidatorsCollectionTest extends TestCase
 		$collection = new ValidatorsCollection([
 			$passedValidator, $passedValidator, $failedValidator, $passedValidator
 		]);
-		$result = $collection->valid('abcdef');
+		$result = $collection->validThroughAllValidators('abcdef');
+
+		$this->assertFalse($result->isValid());
+	}
+
+	public function test_validToFirstError_with_few_validator_when_all_validators_pass_value()
+	{
+		$passedValidator = $this->getMockBuilder(ValidatorInterface::class)
+			->setMethods(['valid'])
+			->getMock();
+		$passedValidator->method('valid')->willReturn(0);
+
+		$collection = new ValidatorsCollection([
+			$passedValidator, $passedValidator, $passedValidator, $passedValidator
+		]);
+		$result = $collection->validThroughAllValidators('abcdef');
+
+		$this->assertTrue($result->isValid());
+	}
+
+	public function test_validToFirstError_with_few_validator_when_one_validator_does_not_pass_value()
+	{
+		$passedValidator = $this->getMockBuilder(ValidatorInterface::class)
+			->setMethods(['valid'])
+			->getMock();
+		$passedValidator->method('valid')->willReturn(0);
+
+		$failedValidator = $this->getMockBuilder(ValidatorInterface::class)
+			->setMethods(['valid'])
+			->getMock();
+		$failedValidator->method('valid')->willReturn(1);
+
+		$collection = new ValidatorsCollection([
+			$passedValidator, $passedValidator, $failedValidator, $passedValidator
+		]);
+		$result = $collection->validThroughAllValidators('abcdef');
 
 		$this->assertFalse($result->isValid());
 	}

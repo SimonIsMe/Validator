@@ -22,7 +22,7 @@ class ValidatorsCollection
 	 *
 	 * @return ValidationResult
 	 */
-	public function valid($value) : ValidationResult
+	public function validThroughAllValidators($value) : ValidationResult
 	{
 		$isValid = true;
 		foreach ($this->validators as $validator) {
@@ -30,5 +30,21 @@ class ValidatorsCollection
 		}
 
 		return new ValidationResult($isValid);
+	}
+
+	/**
+	 * @param mixed $value
+	 *
+	 * @return ValidationResult
+	 */
+	public function validToFirstError($value) : ValidationResult
+	{
+		foreach ($this->validators as $validator) {
+			if ($validator->valid($value)) {
+				return new ValidationResult(false);
+			}
+		}
+
+		return new ValidationResult(true);
 	}
 }
