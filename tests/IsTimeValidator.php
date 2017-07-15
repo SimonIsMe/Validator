@@ -27,6 +27,10 @@ class IsTimeValidatorTest extends TestCase
 				IsTimeValidator::VALUE_IS_TIME,
 			],
 			[
+				'12:34:34',
+				IsTimeValidator::VALUE_IS_TIME,
+			],
+			[
 				'24:12:15',
 				IsTimeValidator::VALUE_IS_NOT_TIME,
 			],
