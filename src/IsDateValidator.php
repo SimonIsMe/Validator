@@ -17,7 +17,7 @@ class IsDateValidator implements ValidatorInterface
 	/**
 	 * @param mixed $value
 	 *
-	 * @return int  - returns 0 if value is correct email address
+	 * @return int  - returns 0 if value is correct date
 	 *                        1 otherwise
 	 */
 	public function valid($value): int

@@ -9,7 +9,7 @@ class IsDateValidatorTest extends TestCase
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function test_not_null($value, $expectedResult)
+	public function test($value, $expectedResult)
 	{
 		$validator = new IsDateValidator();
 		$result = $validator->valid($value);

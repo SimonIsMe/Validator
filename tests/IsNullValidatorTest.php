@@ -9,7 +9,7 @@ class IsNullValidatorTest extends TestCase
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function test_not_null($value, $expectedResult)
+	public function test($value, $expectedResult)
 	{
 		$validator = new IsNullValidator();
 		$result = $validator->valid($value);
