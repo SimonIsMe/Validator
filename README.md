@@ -60,3 +60,8 @@ $result->errors();      // returns array of error numbers (in this case there wi
 - IsNumberValidator
 - IsTimeValidator
 - IsUrlValidator
+
+
+## Licence
+
+MIT (https://en.wikipedia.org/wiki/MIT_License)
