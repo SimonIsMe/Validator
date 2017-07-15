@@ -43,3 +43,20 @@ $result->isValid();     // returns true if value is passed thought all validator
 $result->errors();      // returns array of error numbers (in this case there will be only single element in array) for each of not-passed validators
 
 ```
+
+## LIST OF VALIDATORS
+- IsDateTimeValidator
+- IsDateValidator
+- IsEmailValidator
+- IsNotNullValidator
+- IsNullValidator
+- IsNumberEqualValidator
+- IsNumberGreaterOrEqualValidator
+- IsNumberGreaterThanValidator
+- IsNumberInExclusiveRangeValidator
+- IsNumberInInclusiveRangeValidator
+- IsNumberLessOrEqualValidator
+- IsNumberLessThanValidator
+- IsNumberValidator
+- IsTimeValidator
+- IsUrlValidator
