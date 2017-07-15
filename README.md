@@ -62,6 +62,6 @@ $result->errors();      // returns array of error numbers (in this case there wi
 - IsUrlValidator
 
 
-## Licence
+## License
 
 MIT (https://en.wikipedia.org/wiki/MIT_License)
