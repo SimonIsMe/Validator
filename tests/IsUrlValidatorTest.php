@@ -86,7 +86,6 @@ class IsUrlValidatorTest extends TestCase
 				'',
 				IsUrlValidator::VALUE_IS_NOT_URL,
 			],
-
 		];
 	}
 }
