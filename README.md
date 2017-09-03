@@ -44,6 +44,32 @@ $result->errors();      // returns array of error numbers (in this case there wi
 
 ```
 
+## How to check array of values?
+You can create array full of validators. This array can contain nested validators arrays:
+```php
+$validators = [
+    "email" => new IsEmailValidator(),
+    "age" => new IsNumberValidator()
+];
+```
+
+This $validators array can be used to validate $data array:
+```php
+$data = [
+    "email" => "incorrect email address",
+    "age" => 35
+];
+
+$arrayValidator = mew ArrayValidator(); 
+$result = $arrayValidator->validateArray($validators, $data);
+```
+
+`$result` variable contains `ValidationResult` objects. 
+`ValidationResult::errors()` returns nested array with error codes.
+
+For more example look into ./tests/unit/ArrayValidatorTest.php
+
+
 ## LIST OF VALIDATORS
 - IsDateTimeValidator
 - IsDateValidator

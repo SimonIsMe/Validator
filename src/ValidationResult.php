@@ -10,13 +10,13 @@ class ValidationResult
 	private $isValid;
 
 	/**
-	 * @var int[] - key is validator class name, value is number of error
+	 * @var array
 	 */
 	private $errors = [];
 
 	/**
 	 * @param bool $isValid
-	 * @param int[] $errors
+	 * @param array $errors
 	 */
 	public function __construct(bool $isValid, array $errors = [])
 	{
@@ -41,7 +41,7 @@ class ValidationResult
 	}
 
 	/**
-	 * @return int[]
+	 * @return array
 	 */
 	public function errors(): array
 	{
