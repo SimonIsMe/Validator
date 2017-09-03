@@ -71,6 +71,60 @@ class ArrayValidatorTest extends TestCase
 			],
 			[
 				[
+					'first' => new ValidatorsCollection([
+						new StubValidator(0, 'first_validator_0'),
+						new StubValidator(0, 'first_validator_1'),
+					]),
+					'second' => new StubValidator(0, 'second_validator')
+				],
+				[
+					'first' => 'ok value',
+					'second' => 'ok value',
+				],
+				true,
+				[]
+			],
+			[
+				[
+					'first' => new ValidatorsCollection([
+						new StubValidator(0, 'first_validator_0'),
+						new StubValidator(1, 'first_validator_1'),
+					]),
+					'second' => new StubValidator(0, 'second_validator')
+				],
+				[
+					'first' => 'incorrect value',
+					'second' => 'ok value',
+				],
+				false,
+				[
+					'first' => [
+						'first_validator_1' => 1
+					]
+				]
+			],
+			[
+				[
+					'first' => new ValidatorsCollection([
+						new StubValidator(2, 'first_validator_2'),
+						new StubValidator(1, 'first_validator_1'),
+					]),
+					'second' => new StubValidator(0, 'second_validator')
+				],
+				[
+					'first' => 'incorrect value',
+					'second' => 'ok value',
+				],
+				false,
+				[
+					'first' => [
+						'first_validator_2' => 2,
+						'first_validator_1' => 1
+					]
+				]
+			],
+			[
+				[
 					'first' => new StubValidator(0, 'first_validator'),
 					'second' => new StubValidator(1, 'second_validator'),
 					'third' => new StubValidator(0, 'third_validator'),
@@ -103,7 +157,6 @@ class ArrayValidatorTest extends TestCase
 					'third' => 3,
 				]
 			],
-
 
 			//  nested
 			[

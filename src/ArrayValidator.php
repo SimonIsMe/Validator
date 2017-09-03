@@ -15,7 +15,7 @@ class ArrayValidator
 	const IS_ARRAY = 'IS ARRAY';
 
 	/**
-	 * @param ValidatorInterface[] $validators
+	 * @param array $validators
 	 * @param array $data
 	 *
 	 * @return ValidationResult
@@ -40,6 +40,14 @@ class ArrayValidator
 
 			if (is_array($data[$key])) {
 				$errors[$key] = self::IS_ARRAY;
+				continue;
+			}
+
+			if ($validator instanceof ValidatorsCollection) {
+				$result = $validator->validThroughAllValidators($data[$key]);
+				if ($result->isValid() === false) {
+					$errors[$key] = $result->errors();
+				}
 				continue;
 			}
 
