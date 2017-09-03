@@ -84,8 +84,10 @@ For more example look into ./tests/unit/ArrayValidatorTest.php
 - IsNumberLessOrEqualValidator
 - IsNumberLessThanValidator
 - IsNumberValidator
+- IsStringValidator
 - IsTimeValidator
 - IsUrlValidator
+- StringLengthValidator
 
 
 ## License
