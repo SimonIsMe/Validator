@@ -66,4 +66,28 @@ class StringLengthValidator implements ValidatorInterface
 
 		return self::HAS_CORRECT_LENGTH;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::HAS_CORRECT_LENGTH:
+				return 'Ok';
+			case self::IS_TOO_SHORT:
+			case self::IS_TOO_LONG:
+				if ($this->minLength === 0) {
+					return 'Given string has to have maximum length equals ' . $this->maxLength . '.';
+				}
+				if ($this->maxLength === -1) {
+					return 'Given string has to have minimum length equals ' . $this->minLength . '.';
+				}
+				return 'Given string has to have length in given inclusive range <' . $this->minLength . ', ' . $this->maxLength . '>.';
+		}
+
+		return '';
+	}
 }
