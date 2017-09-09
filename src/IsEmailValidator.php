@@ -24,6 +24,23 @@ class IsEmailValidator implements ValidatorInterface
 	}
 
 	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::VALUE_IS_EMAIL:
+				return 'Ok';
+			case self::VALUE_IS_NOT_EMAIL:
+				return 'Given email is in incorrect format.';
+		}
+
+		return '';
+	}
+
+	/**
 	 * @param mixed $value
 	 *
 	 * @return int  - returns 0 if value is correct email address
