@@ -75,6 +75,7 @@ For more example look into ./tests/unit/ArrayValidatorTest.php
 - IsDateTimeValidator
 - IsDateValidator
 - IsEmailValidator
+- IsIntegerValidatorTest
 - IsNotNullValidator
 - IsNullValidator
 - IsNumberEqualValidator
@@ -88,6 +89,7 @@ For more example look into ./tests/unit/ArrayValidatorTest.php
 - IsStringValidator
 - IsTimeValidator
 - IsUrlValidator
+- IsValueFromSetValidatorTest
 - StringLengthValidator
 
 
