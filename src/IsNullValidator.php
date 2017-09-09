@@ -37,4 +37,21 @@ class IsNullValidator implements ValidatorInterface
 
 		return self::VALUE_IS_NOT_NULL;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::VALUE_IS_NULL:
+				return 'Ok';
+			case self::VALUE_IS_NOT_NULL:
+				return 'Given value has to be null.';
+		}
+
+		return '';
+	}
 }
