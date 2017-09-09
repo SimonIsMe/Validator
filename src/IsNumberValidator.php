@@ -37,4 +37,21 @@ class IsNumberValidator implements ValidatorInterface
 
 		return 1;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::IS_NUMBER:
+				return 'Ok';
+			case self::IS_NOT_NUMBER:
+				return 'Given value has to be a number.';
+		}
+
+		return '';
+	}
 }
