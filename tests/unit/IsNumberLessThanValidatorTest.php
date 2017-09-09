@@ -15,11 +15,12 @@ class IsNumberLessThanValidatorTest extends TestCase
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function test($boundary, $value, $expectedResult)
+	public function test($boundary, $value, $expectedResult, $expectedErrorMessage)
 	{
 		$validator = new IsNumberLessThanValidator($boundary);
 		$result = $validator->valid($value);
 		$this->assertEquals($expectedResult, $result);
+		$this->assertEquals($expectedErrorMessage, $validator->errorText($result));
 	}
 
 	/**
@@ -32,31 +33,37 @@ class IsNumberLessThanValidatorTest extends TestCase
 				20,
 				100,
 				IsNumberLessThanValidator::NUMBER_IS_TOO_BIG,
+				'Given value has to be less than 20.'
 			],
 			[
 				20,
 				20,
 				IsNumberLessThanValidator::NUMBER_IS_TOO_BIG,
+				'Given value has to be less than 20.'
 			],
 			[
 				20,
 				-10,
 				IsNumberLessThanValidator::NUMBER_IS_OK,
+				'Ok'
 			],
 			[
 				20.5,
 				100,
 				IsNumberLessThanValidator::NUMBER_IS_TOO_BIG,
+				'Given value has to be less than 20.5.'
 			],
 			[
 				20.5,
 				20.5,
 				IsNumberLessThanValidator::NUMBER_IS_TOO_BIG,
+				'Given value has to be less than 20.5.'
 			],
 			[
 				20.5,
 				-10,
 				IsNumberLessThanValidator::NUMBER_IS_OK,
+				'Ok'
 			],
 		];
 	}

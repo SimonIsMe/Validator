@@ -45,9 +45,26 @@ class IsNumberLessThanValidator implements ValidatorInterface
 	public function valid($value): int
 	{
 		if ($this->boundary > $value) {
-			return 0;
+			return self::NUMBER_IS_OK;
 		}
 
-		return 1;
+		return self::NUMBER_IS_TOO_BIG;
+	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::NUMBER_IS_OK:
+				return 'Ok';
+			case self::NUMBER_IS_TOO_BIG:
+				return 'Given value has to be less than ' . $this->boundary . '.';
+		}
+
+		return '';
 	}
 }
