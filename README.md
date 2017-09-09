@@ -71,6 +71,7 @@ For more example look into ./tests/unit/ArrayValidatorTest.php
 
 
 ## LIST OF VALIDATORS
+- IsBoolValidator
 - IsDateTimeValidator
 - IsDateValidator
 - IsEmailValidator
