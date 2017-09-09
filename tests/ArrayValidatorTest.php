@@ -10,13 +10,14 @@ class ArrayValidatorTest extends TestCase
 	/**
 	 * @dataProvider validateJson_dataProvider
 	 */
-	public function test_validateJson($validators, $data, $isValid, $errors)
+	public function test_validateJson($validators, $data, $isValid, $errorCodes, $errorTexts)
 	{
 		$arrayValidator = new ArrayValidator();
 		$result = $arrayValidator->validateArray($validators, $data);
 
 		$this->assertEquals($isValid, $result->isValid());
-		$this->assertEquals($errors, $result->errors());
+		$this->assertEquals($errorCodes, $result->errorCodes());
+		$this->assertEquals($errorTexts, $result->errorsTexts());
 	}
 
 	public function validateJson_dataProvider()
@@ -26,12 +27,14 @@ class ArrayValidatorTest extends TestCase
 				[],
 				[],
 				true,
-				[]
+				[],
+				[],
 			],[
 				[],
 				['extra' => 'extra'],
 				true,
-				[]
+				[],
+				[],
 			],
 			[
 				[
@@ -41,6 +44,9 @@ class ArrayValidatorTest extends TestCase
 				false,
 				[
 					'first' => ArrayValidator::NOT_EXISTS
+				],
+				[
+					'first' => 'This value does not exist.'
 				]
 			],
 			[
@@ -53,6 +59,9 @@ class ArrayValidatorTest extends TestCase
 				false,
 				[
 					'first' => ArrayValidator::IS_ARRAY
+				],
+				[
+					'first' => 'This value has to be a single value.'
 				]
 			],
 			[
@@ -67,6 +76,7 @@ class ArrayValidatorTest extends TestCase
 					'second' => 'ok value',
 				],
 				true,
+				[],
 				[]
 			],
 			[
@@ -82,6 +92,7 @@ class ArrayValidatorTest extends TestCase
 					'second' => 'ok value',
 				],
 				true,
+				[],
 				[]
 			],
 			[
@@ -100,6 +111,11 @@ class ArrayValidatorTest extends TestCase
 				[
 					'first' => [
 						'first_validator_1' => 1
+					]
+				],
+				[
+					'first' => [
+						'first_validator_1' => '1'
 					]
 				]
 			],
@@ -121,6 +137,12 @@ class ArrayValidatorTest extends TestCase
 						'first_validator_2' => 2,
 						'first_validator_1' => 1
 					]
+				],
+				[
+					'first' => [
+						'first_validator_2' => '2',
+						'first_validator_1' => '1'
+					]
 				]
 			],
 			[
@@ -137,6 +159,9 @@ class ArrayValidatorTest extends TestCase
 				false,
 				[
 					'second' => 1
+				],
+				[
+					'second' => '1'
 				]
 			],
 			[
@@ -155,6 +180,11 @@ class ArrayValidatorTest extends TestCase
 					'first' => 1,
 					'second' => 2,
 					'third' => 3,
+				],
+				[
+					'first' => '1',
+					'second' => '2',
+					'third' => '3',
 				]
 			],
 
@@ -172,6 +202,7 @@ class ArrayValidatorTest extends TestCase
 					'first' => 'ok value',
 				],
 				true,
+				[],
 				[]
 			],
 			[
@@ -190,6 +221,10 @@ class ArrayValidatorTest extends TestCase
 				[
 					'second' => 2,
 					'first' => 1,
+				],
+				[
+					'second' => '2',
+					'first' => '1',
 				]
 			],
 			[
@@ -208,6 +243,7 @@ class ArrayValidatorTest extends TestCase
 					'third' => 'ok value',
 				],
 				true,
+				[],
 				[]
 			],
 			[
@@ -229,6 +265,11 @@ class ArrayValidatorTest extends TestCase
 				[
 					'nested' => [
 						'first' => 1,
+					]
+				],
+				[
+					'nested' => [
+						'first' => '1',
 					]
 				]
 			],
@@ -253,6 +294,12 @@ class ArrayValidatorTest extends TestCase
 						'first' => 1,
 					],
 					'third' => 3
+				],
+				[
+					'nested' => [
+						'first' => '1',
+					],
+					'third' => '3'
 				]
 			],
 		];
