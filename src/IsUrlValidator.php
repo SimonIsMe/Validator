@@ -37,4 +37,21 @@ class IsUrlValidator implements ValidatorInterface
 
 		return self::VALUE_IS_NOT_URL;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::VALUE_IS_URL:
+				return 'Ok';
+			case self::VALUE_IS_NOT_URL:
+				return 'Given value has not correct URL format.';
+		}
+
+		return '';
+	}
 }
