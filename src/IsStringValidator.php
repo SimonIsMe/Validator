@@ -37,4 +37,21 @@ class IsStringValidator implements ValidatorInterface
 
 		return self::IS_NOT_STRING;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::IS_STRING:
+				return 'Ok';
+			case self::IS_NOT_STRING:
+				return 'Given value has to be a string.';
+		}
+
+		return '';
+	}
 }
