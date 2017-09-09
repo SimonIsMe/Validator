@@ -13,6 +13,13 @@ interface ValidatorInterface
 	public function valid($value): int;
 
 	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string;
+
+	/**
 	 * Returns unique name of the validator.
 	 *
 	 * @return string

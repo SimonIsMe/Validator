@@ -73,6 +73,23 @@ class IsDateTimeValidator implements ValidatorInterface
 	}
 
 	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::VALUE_IS_DATE_TIME:
+				return 'Ok';
+			case self::VALUE_IS_NOT_DATE_TIME:
+				return 'Given date is not in correct format.';
+		}
+
+		return '';
+	}
+
+	/**
 	 * @param mixed $value
 	 *
 	 * @return int  - returns 0 if value is correct date-time value
