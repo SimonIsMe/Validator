@@ -15,11 +15,12 @@ class IsNumberInExclusiveRangeValidatorTest extends TestCase
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function test($boundaryLeft, $boundaryRight, $value, $expectedResult)
+	public function test($boundaryLeft, $boundaryRight, $value, $expectedResult, $expectedErrorMessage)
 	{
 		$validator = new IsNumberInExclusiveRangeValidator($boundaryLeft, $boundaryRight);
 		$result = $validator->valid($value);
 		$this->assertEquals($expectedResult, $result);
+		$this->assertEquals($expectedErrorMessage, $validator->errorText($result));
 	}
 
 	/**
@@ -32,61 +33,71 @@ class IsNumberInExclusiveRangeValidatorTest extends TestCase
 				-20,
 				50,
 				-100,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_SMALL,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_SMALL,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 			[
 				-20,
 				50,
 				-20,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_SMALL,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_SMALL,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 			[
 				-20,
 				50,
 				0,
-				IsNumberInInclusiveRangeValidator::VALUE_FIT_TO_RANGE,
+				IsNumberInExclusiveRangeValidator::VALUE_FIT_TO_RANGE,
+				'Ok'
 			],
 			[
 				-20,
 				50,
 				50,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_BIG,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_BIG,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 			[
 				-20,
 				50,
 				100,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_BIG,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_BIG,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 			[
 				-20.0,
 				50.0,
 				-100,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_SMALL,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_SMALL,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 			[
 				-20.0,
 				50.0,
 				-20,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_SMALL,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_SMALL,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 			[
 				-20.0,
 				50.0,
 				0,
-				IsNumberInInclusiveRangeValidator::VALUE_FIT_TO_RANGE,
+				IsNumberInExclusiveRangeValidator::VALUE_FIT_TO_RANGE,
+				'Ok'
 			],
 			[
 				-20.0,
 				50.0,
 				50,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_BIG,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_BIG,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 			[
 				-20.0,
 				50.0,
 				100,
-				IsNumberInInclusiveRangeValidator::VALUE_TOO_BIG,
+				IsNumberInExclusiveRangeValidator::VALUE_TOO_BIG,
+				'Given value has to be in exclusive range (-20, 50).'
 			],
 		];
 	}

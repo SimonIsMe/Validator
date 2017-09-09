@@ -69,4 +69,22 @@ class IsNumberInExclusiveRangeValidator implements ValidatorInterface
 
 		return self::VALUE_FIT_TO_RANGE;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::VALUE_FIT_TO_RANGE:
+				return 'Ok';
+			case self::VALUE_TOO_SMALL:
+			case self::VALUE_TOO_BIG:
+				return 'Given value has to be in exclusive range (' . $this->leftBoundary . ', ' . $this->rightBoundary . ').';
+		}
+
+		return '';
+	}
 }
