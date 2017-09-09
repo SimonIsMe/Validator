@@ -50,4 +50,21 @@ class IsNumberLessOrEqualValidator implements ValidatorInterface
 
 		return self::NUMBER_IS_TOO_BIG;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::NUMBER_IS_OK:
+				return 'Ok';
+			case self::NUMBER_IS_TOO_BIG:
+				return 'Given value has to be less or equal ' . $this->boundary . '.';
+		}
+
+		return '';
+	}
 }
