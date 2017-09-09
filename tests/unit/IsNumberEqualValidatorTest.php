@@ -15,11 +15,12 @@ class IsNumberEqualValidatorTest extends TestCase
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function test($boundary, $value, $expectedResult)
+	public function test($boundary, $value, $expectedResult, $expectedErrorMessage)
 	{
 		$validator = new IsNumberEqualValidator($boundary);
 		$result = $validator->valid($value);
 		$this->assertEquals($expectedResult, $result);
+		$this->assertEquals($expectedErrorMessage, $validator->errorText($result));
 	}
 
 	/**
@@ -32,31 +33,38 @@ class IsNumberEqualValidatorTest extends TestCase
 				20,
 				100,
 				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
+				'Given number is not equal to 20.'
 			],
 			[
 				20,
 				20,
 				IsNumberEqualValidator::NUMBER_IS_EQUAL,
+				'Ok'
 			],
 			[
 				20,
 				-10,
 				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
+				'Given number is not equal to 20.'
 			],
 			[
 				20.5,
 				100,
 				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
+				'Given number is not equal to 20.5.'
+
 			],
 			[
 				20.5,
 				20.5,
 				IsNumberEqualValidator::NUMBER_IS_EQUAL,
+				'Ok'
 			],
 			[
 				20.5,
 				-10,
 				IsNumberEqualValidator::NUMBER_IS_NOT_EQUAL,
+				'Given number is not equal to 20.5.'
 			],
 		];
 	}

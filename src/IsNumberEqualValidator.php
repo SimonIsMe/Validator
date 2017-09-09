@@ -50,4 +50,21 @@ class IsNumberEqualValidator implements ValidatorInterface
 
 		return self::NUMBER_IS_NOT_EQUAL;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::NUMBER_IS_EQUAL:
+				return 'Ok';
+			case self::NUMBER_IS_NOT_EQUAL:
+				return 'Given number is not equal to ' . $this->boundary . '.';
+		}
+
+		return '';
+	}
 }
