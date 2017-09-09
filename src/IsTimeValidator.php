@@ -49,4 +49,21 @@ class IsTimeValidator implements ValidatorInterface
 
 		return self::VALUE_IS_TIME;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		switch ($validationResult) {
+			case self::VALUE_IS_TIME:
+				return 'Ok';
+			case self::VALUE_IS_NOT_TIME:
+				return 'Given value has not correct time format.';
+		}
+
+		return '';
+	}
 }
