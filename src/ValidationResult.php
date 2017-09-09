@@ -12,16 +12,23 @@ class ValidationResult
 	/**
 	 * @var array
 	 */
-	private $errors = [];
+	private $errorCodes = [];
+
+	/**
+	 * @var array
+	 */
+	private $errorTexts = [];
 
 	/**
 	 * @param bool $isValid
-	 * @param array $errors
+	 * @param array $errorCodes
+	 * @param array $errorTexts
 	 */
-	public function __construct(bool $isValid, array $errors = [])
+	public function __construct(bool $isValid, array $errorCodes = [], array $errorTexts = [])
 	{
 		$this->isValid = $isValid;
-		$this->errors = $errors;
+		$this->errorCodes = $errorCodes;
+		$this->errorTexts = $errorTexts;
 	}
 
 	/**
@@ -43,9 +50,16 @@ class ValidationResult
 	/**
 	 * @return array
 	 */
-	public function errors(): array
+	public function errorCodes(): array
 	{
-		return $this->errors;
+		return $this->errorCodes;
 	}
 
+	/**
+	 * @return array
+	 */
+	public function errorsTexts(): array
+	{
+		return $this->errorTexts;
+	}
 }

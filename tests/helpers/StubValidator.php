@@ -47,4 +47,14 @@ class StubValidator implements ValidatorInterface
 	{
 		return $this->name;
 	}
+
+	/**
+	 * @param int $validationResult
+	 *
+	 * @return string
+	 */
+	public function errorText(int $validationResult): string
+	{
+		return $validationResult . '';
+	}
 }
