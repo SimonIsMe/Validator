@@ -17,10 +17,11 @@ class ArrayValidator
 	/**
 	 * @param array $validators
 	 * @param array $data
+	 * @param bool $validateThroughAllValidators = true
 	 *
 	 * @return ValidationResult
 	 */
-	public function validateArray(array $validators, array $data): ValidationResult
+	public function validateArray(array $validators, array $data, bool $validateThroughAllValidators = true): ValidationResult
 	{
 		$errorCodes = [];
 		$errorTexts = [];
@@ -48,7 +49,12 @@ class ArrayValidator
 			}
 
 			if ($validator instanceof ValidatorsCollection) {
-				$result = $validator->validThroughAllValidators($data[$key]);
+				if ($validateThroughAllValidators) {
+					$result = $validator->validThroughAllValidators($data[$key]);
+				} else {
+					$result = $validator->validToFirstError($data[$key]);
+				}
+
 				if ($result->isValid() === false) {
 					$errorCodes[$key] = $result->errorCodes();
 					$errorTexts[$key] = $result->errorsTexts();
