@@ -91,6 +91,7 @@ For more example look into ./tests/unit/ArrayValidatorTest.php
 - IsUrlValidator
 - IsValueFromSetValidatorTest
 - StringLengthValidator
+- SetValidator
 
 
 ## License
