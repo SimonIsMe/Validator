@@ -42,11 +42,6 @@ class ArrayValidator
 				continue;
 			}
 
-			if (is_array($data[$key])) {
-				$errorCodes[$key] = self::IS_ARRAY;
-				$errorTexts[$key] = 'This value has to be a single value.';
-				continue;
-			}
 
 			if ($validator instanceof ValidatorsCollection) {
 				if ($validateThroughAllValidators) {
@@ -59,6 +54,12 @@ class ArrayValidator
 					$errorCodes[$key] = $result->errorCodes();
 					$errorTexts[$key] = $result->errorsTexts();
 				}
+				continue;
+			}
+
+			if (is_array($data[$key])) {
+				$errorCodes[$key] = self::IS_ARRAY;
+				$errorTexts[$key] = 'This value has to be a single value.';
 				continue;
 			}
 

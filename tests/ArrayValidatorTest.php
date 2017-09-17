@@ -579,6 +579,114 @@ class ArrayValidatorTest extends TestCase
 					'third' => '3'
 				]
 			],
+
+
+			[
+				[
+					'key' =>
+						new ValidatorsCollection([
+							new IsSetValidator(),
+							new SetValidator([
+								new IsStringValidator(),
+							]),
+						])
+				],
+				[
+					'key' => ['a', 'b', 'c']
+				],
+				true,
+				true,
+				[],
+				[],
+			],
+			[
+				[
+					'key' =>
+						new ValidatorsCollection([
+							new IsSetValidator(),
+							new SetValidator([
+								new IsStringValidator(),
+							]),
+						])
+				],
+				[
+					'key' => ['a', 'b', 'c', 123]
+				],
+				true,
+				false,
+				[
+					'key' => [
+						'SetValidator' => 1
+					]
+				],
+				[
+					'key' => [
+						'SetValidator' => 'Values in the set are incorrect.'
+					]
+				],
+			],
+			[
+				[
+					'nested' => [
+						'key' =>
+							new ValidatorsCollection([
+								new IsSetValidator(),
+								new SetValidator([
+									new IsStringValidator(),
+								]),
+							]),
+					],
+					'third' => new StubValidator(0, 'third_validator'),
+				],
+				[
+					'nested' => [
+						'key' => ['a', 'b', 'c']
+					],
+					'third' => 'aaa'
+				],
+				true,
+				true,
+				[],
+				[],
+			],
+			[
+				[
+					'nested' => [
+						'key' =>
+							new ValidatorsCollection([
+								new IsSetValidator(),
+								new SetValidator([
+									new IsStringValidator(),
+								]),
+							]),
+					],
+					'third' => new StubValidator(3, 'third_validator'),
+				],
+				[
+					'nested' => [
+						'key' => ['a', 'b', 'c', 123]
+					],
+					'third' => 'aa'
+				],
+				true,
+				false,
+				[
+					'nested' => [
+						'key' => [
+							'SetValidator' => 1
+						]
+					],
+					'third' => 3
+				],
+				[
+					'nested' => [
+						'key' => [
+							'SetValidator' => 'Values in the set are incorrect.'
+						]
+					],
+					'third' => '3'
+				],
+			],
 		];
 	}
 }
